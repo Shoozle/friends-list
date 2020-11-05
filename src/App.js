@@ -27,6 +27,8 @@ function App(props) {
 
   function deleteTask(id) {
     console.log(id);
+    const remainingTasks = tasks.filter(task => id !== task.id);
+    setTasks(remainingTasks);
   }
 
   const [tasks, setTasks] = useState(props.tasks);
@@ -38,6 +40,7 @@ function App(props) {
         completed={task.completed} 
         key={task.id}
         toggleTaskCompleted={toggleTaskCompleted}
+        deleteTask={deleteTask}
         />
         )
       );
