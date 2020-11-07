@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-export default function Todo(props) {
+export default function Prediction(props) {
 
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState('');
@@ -27,7 +27,7 @@ export default function Todo(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.editTask(props.id, newName);
+    props.editPrediction(props.id, newName);
     setNewName("")
     setEditing(false)
   }
@@ -35,12 +35,12 @@ export default function Todo(props) {
   const editingTemplate = (
     <form className="stack-small" onSubmit={handleSubmit}>
       <div className="form-group">
-        <label className="todo-label" htmlFor={props.id}>
+        <label className="label" htmlFor={props.id}>
           New name for {props.name}
         </label>
         <input 
           id={props.id} 
-          className="todo-text" 
+          className="text" 
           type="text" 
           value={newName} 
           onChange={handleChange}
@@ -48,11 +48,11 @@ export default function Todo(props) {
         />
       </div>
       <div className="btn-group">
-        <button type="button" className="btn todo-cancel" onClick={() => setEditing(false)}>
+        <button type="button" className="btn cancel" onClick={() => setEditing(false)}>
           Cancel
             <span className="visually-hidden">renaming {props.name}</span>
         </button>
-        <button type="submit" className="btn btn__primary todo-edit">
+        <button type="submit" className="btn btn__primary edit">
           Save
             <span className="visually-hidden">new name for {props.name}</span>
         </button>
@@ -65,10 +65,10 @@ export default function Todo(props) {
         <input
           id={props.id}
           type="checkbox"
-          defaultChecked={props.completed}
-          onChange={() => props.toggleTaskCompleted(props.id)}
+          defaultChecked={props.outcome}
+          onChange={() => props.togglePredictionOutcome(props.id)}
         />
-        <label className="todo-label" htmlFor={props.id}>
+        <label className="label" htmlFor={props.id}>
           {props.name}
         </label>
       </div>
@@ -79,7 +79,7 @@ export default function Todo(props) {
         <button
           type="button"
           className="btn btn__danger"
-          onClick={() => props.deleteTask(props.id)}
+          onClick={() => props.deletePrediction(props.id)}
         >
           Delete <span className="visually-hidden">{props.name}</span>
         </button>
@@ -99,7 +99,7 @@ export default function Todo(props) {
   }, [wasEditing, isEditing]);
 
   return (
-    <li className="todo">
+    <li className="prediction">
       {isEditing ? editingTemplate : viewTemplate}
     </li>
   );

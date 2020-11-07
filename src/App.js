@@ -1,84 +1,74 @@
-import React, { useRef, useEffect, useState } from "react";
-import Todo from "./components/Todo";
+import React, { useState } from "react";
+import Prediction from "./components/Prediction";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import { nanoid } from "nanoid";
-import './App.css';
+
 
 //Goes outside app as this doesn't change when App gets updated
 const FILTER_MAP = {
   All: () => true,
-  Correct: task => !task.completed,
-  Incorrect: task => task.completed
+  Correct: prediction => prediction.outcome,
+  Incorrect: prediction => !prediction.outcome
 };
 
 //Can now refer to filter names to run the associated function of that object which is listed above
 const FILTER_NAMES = Object.keys(FILTER_MAP);
 
-function usePrevious(value) {
-  const ref = useRef();
-  useEffect(() => {
-    ref.current = value;
-  });
-  return ref.current;
-}
-
 function App(props) {
 
-  const listHeadingRef = useRef(null);
-
-  //Default state is to show ALL the tasks
+  //Default state is to show ALL the predictions
   const [filter, setFilter] = useState('All');
 
   //Nanoid attaches unique id based on previous react objects
-  function addTask(name) {
-    const newTask = {
-      id: "todo=" + nanoid(),
+  function addPrediction(name) {
+    const newprediction = {
+      id: "prediction=" + nanoid(),
       name: name,
-      completed: false
+      outcome: false
     };
-    setTasks([...tasks, newTask]);
+    setPredictions([...predictions, newprediction]);
   }
 
-  function toggleTaskCompleted(id) {
-    const updatedTasks = tasks.map(task => {
-      if (id === task.id) {
-        return { ...task, completed: !task.completed }
+  function togglePredictionOutcome(id) {
+    const updatedPredictions = predictions.map(prediction => {
+      if (id === prediction.id) {
+        return { ...prediction, outcome: !prediction.outcome }
       }
-      return task;
+      return prediction;
     });
-    setTasks(updatedTasks);
+    setPredictions(updatedPredictions);
   }
 
-  function deleteTask(id) {
+  function deletePrediction(id) {
     console.log(id);
-    const remainingTasks = tasks.filter(task => id !== task.id);
-    setTasks(remainingTasks);
+    const remainingpredictions = predictions.filter(prediction => id !== prediction.id);
+    setPredictions(remainingpredictions);
   }
 
-  function editTask(id, newName) {
-    const editedTaskList = tasks.map(task => {
-      if (id === task.id) {
-        return { ...task, name: newName }
+  function editPrediction(id, newName) {
+    const editedpredictionList = predictions.map(prediction => {
+      if (id === prediction.id) {
+        return { ...prediction, name: newName }
       }
-      return task;
+      return prediction;
     });
-    setTasks(editedTaskList);
+    setPredictions(editedpredictionList);
   }
 
-  const [tasks, setTasks] = useState(props.tasks);
+  const [predictions, setPredictions] = useState(props.predictions);
 
-  const taskList = tasks
+  const predictionList = predictions
     .filter(FILTER_MAP[filter])
-    .map(task => (
-      <Todo
-        id={task.id}
-        name={task.name}
-        completed={task.completed}
-        key={task.id}
-        toggleTaskCompleted={toggleTaskCompleted}
-        deleteTask={deleteTask}
-        editTask={editTask}
+    .map(prediction => (
+      <Prediction
+        id={prediction.id}
+        name={prediction.name}
+        outcome={prediction.outcome}
+        key={prediction.id}
+        togglePredictionOutcome={togglePredictionOutcome}
+        deletePrediction={deletePrediction}
+        editPrediction={editPrediction}
       />
     ));
 
@@ -91,17 +81,8 @@ function App(props) {
     />
   ));
 
-
-  const prevTaskLength = usePrevious(tasks.length);
-
-  useEffect(() => {
-    if (tasks.length - prevTaskLength === -1) {
-      listHeadingRef.current.focus();
-    }
-  }, [tasks.length, prevTaskLength]);
-
   return (
-    <div className="todoapp stack-large">
+    <div className="predictionapp stack-large">
       <h1>{props.name}</h1>
 
       <div className="filters btn-group stack-exception">
@@ -109,12 +90,12 @@ function App(props) {
       </div>
       <ul
         role="list"
-        className="todo-list stack-large stack-exception"
+        className="prediction-list stack-large stack-exception"
         aria-labelledby="list-heading">
-        {taskList}
+        {predictionList}
       </ul>
       <Form
-        addTask={addTask}
+        addprediction={addPrediction}
       />
     </div>
   );

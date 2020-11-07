@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import styles from './app.module.css'
 import reportWebVitals from './reportWebVitals';
 
 const DATA = [
@@ -23,8 +24,8 @@ const CHRISDATA = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App name="Sean's Predictions" tasks={SEANDATA}/>
-    <App name="Chris' Predictions" tasks={CHRISDATA}/>
+    <App className={styles.app} name="Sean's Predictions" predictions={SEANDATA}/>
+    <App name="Chris' Predictions" predictions={CHRISDATA}/>
   </React.StrictMode>,
   document.getElementById('root')
 );
