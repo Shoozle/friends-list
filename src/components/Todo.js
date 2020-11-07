@@ -1,9 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 export default function Todo(props) {
 
   const [isEditing, setEditing] = useState(false);
   const [newName, setNewName] = useState('');
+
+  const editFieldRef = useRef(null);
+  const editButtonRef = useRef(null);
+
+  //Stores previous editing value so we can see what we were last doing
+  const wasEditing = usePrevious(isEditing);
+
+  //Update either past isediting false or true
+  function usePrevious(value) {
+    const ref = useRef();
+    useEffect(() => {
+      ref.current = value;
+    });
+    return ref.current;
+  }
 
 
   function handleChange(e) {
@@ -23,7 +38,14 @@ export default function Todo(props) {
         <label className="todo-label" htmlFor={props.id}>
           New name for {props.name}
         </label>
-        <input id={props.id} className="todo-text" type="text" value={newName} onChange={handleChange}/>
+        <input 
+          id={props.id} 
+          className="todo-text" 
+          type="text" 
+          value={newName} 
+          onChange={handleChange}
+          ref={editFieldRef}
+        />
       </div>
       <div className="btn-group">
         <button type="button" className="btn todo-cancel" onClick={() => setEditing(false)}>
@@ -51,7 +73,7 @@ export default function Todo(props) {
         </label>
       </div>
       <div className="btn-group">
-        <button type="button" className="btn" onClick={() => setEditing(true)}>
+        <button type="button" className="btn" onClick={() => setEditing(true)} ref={editButtonRef}>
           Edit <span className="visually-hidden">{props.name}</span>
         </button>
         <button
@@ -64,6 +86,19 @@ export default function Todo(props) {
       </div>
     </div>
   );
+
+  //Always runs after a component is rendered
+  //If editing, focus on the current ref text box or edit button
+  useEffect(() => {
+    if (!wasEditing && isEditing) {
+      editFieldRef.current.focus();
+    }
+    if (wasEditing && !isEditing) {
+      editButtonRef.current.focus();
+    }
+  }, [wasEditing, isEditing]);
+
+  console.log("main render");
 
   return (
     <li className="todo">
