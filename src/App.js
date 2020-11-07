@@ -3,12 +3,13 @@ import Todo from "./components/Todo";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import { nanoid } from "nanoid";
+import './App.css';
 
 //Goes outside app as this doesn't change when App gets updated
 const FILTER_MAP = {
   All: () => true,
-  Active: task => !task.completed,
-  Completed: task => task.completed
+  Correct: task => !task.completed,
+  Incorrect: task => task.completed
 };
 
 //Can now refer to filter names to run the associated function of that object which is listed above
@@ -90,8 +91,6 @@ function App(props) {
     />
   ));
 
-  const tasksNoun = taskList.length !== 1 ? 'tasks' : 'task';
-  const headingText = `${taskList.length} ${tasksNoun} remaining`;
 
   const prevTaskLength = usePrevious(tasks.length);
 
@@ -103,22 +102,20 @@ function App(props) {
 
   return (
     <div className="todoapp stack-large">
-      <h1>TodoMatic</h1>
-      <Form
-        addTask={addTask}
-      />
+      <h1>{props.name}</h1>
+
       <div className="filters btn-group stack-exception">
         {filterList}
       </div>
-      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
-        {headingText}
-      </h2>
       <ul
         role="list"
         className="todo-list stack-large stack-exception"
         aria-labelledby="list-heading">
         {taskList}
       </ul>
+      <Form
+        addTask={addTask}
+      />
     </div>
   );
 }
