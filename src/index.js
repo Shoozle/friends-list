@@ -2,12 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Header from './components/Header';
 
-const DATA = [
-  { id: "todo-0", name: "Eat", completed: false },
-  { id: "todo-1", name: "Sleep", completed: false },
-  { id: "todo-2", name: "Repeat", completed: false }
-];
+// const DATA = [
+//   { id: "todo-0", name: "Eat", completed: false },
+//   { id: "todo-1", name: "Sleep", completed: false },
+//   { id: "todo-2", name: "Repeat", completed: false }
+// ];
 
 const SEANDATA = [
   { id: "prediction-0", name: "Bloodborne 2 comes to PC", outcome: false },
@@ -22,8 +23,11 @@ const CHRISDATA = [
 
 ReactDOM.render(
   <React.StrictMode>
-    <App name="Sean's Predictions" predictions={SEANDATA}/>
-    <App name="Chris' Predictions" predictions={CHRISDATA}/>
+    <Header/>
+    <div className="Apparea">
+      <App name="Sean's Predictions" predictions={SEANDATA}/>
+      <App name="Chris' Predictions" predictions={CHRISDATA}/>
+    </div>
   </React.StrictMode>,
   document.getElementById('root')
 );

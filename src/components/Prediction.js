@@ -60,28 +60,27 @@ export default function Prediction(props) {
     </form>
   );
   const viewTemplate = (
-    <div className="stack-small">
-      <div className="c-cb">
+    <div>
+      <div>
         <input
           id={props.id}
           type="checkbox"
           defaultChecked={props.outcome}
           onChange={() => props.togglePredictionOutcome(props.id)}
         />
-        <label className="label" htmlFor={props.id}>
+        <label htmlFor={props.id}>
           {props.name}
         </label>
       </div>
-      <div className="btn-group">
-        <button type="button" className="btn" onClick={() => setEditing(true)} ref={editButtonRef}>
-          Edit <span className="visually-hidden">{props.name}</span>
+      <div >
+        <button type="button"  onClick={() => setEditing(true)} ref={editButtonRef}>
+          Edit 
         </button>
         <button
           type="button"
-          className="btn btn__danger"
           onClick={() => props.deletePrediction(props.id)}
         >
-          Delete <span className="visually-hidden">{props.name}</span>
+          Delete
         </button>
       </div>
     </div>
@@ -99,7 +98,7 @@ export default function Prediction(props) {
   }, [wasEditing, isEditing]);
 
   return (
-    <li className="prediction">
+    <li>
       {isEditing ? editingTemplate : viewTemplate}
     </li>
   );

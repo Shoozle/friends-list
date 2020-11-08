@@ -83,15 +83,13 @@ function App(props) {
   ));
 
   return (
-    <div className="prediction stack-large">
+    <div className="prediction">
       <h1>{props.name}</h1>
 
-      <div className="filters btn-group stack-exception">
+      <div >
         {filterList}
       </div>
       <ul
-        role="list"
-        className="prediction-list "
         aria-labelledby="list-heading">
         {predictionList}
       </ul>
