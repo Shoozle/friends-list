@@ -1,0 +1,19 @@
+:root {
+    --main-bg-color: #cdcdcd;
+}
+
+*{
+    margin: 0;
+    padding: 0;
+
+}
+#root {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--main-bg-color);
+}
+.prediction {
+    background-color: white;
+    min-width: 50%;
+}

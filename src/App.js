@@ -3,6 +3,7 @@ import Prediction from "./components/Prediction";
 import Form from "./components/Form";
 import FilterButton from "./components/FilterButton";
 import { nanoid } from "nanoid";
+import './app.css';
 
 
 //Goes outside app as this doesn't change when App gets updated
@@ -82,7 +83,7 @@ function App(props) {
   ));
 
   return (
-    <div className="predictionapp stack-large">
+    <div className="prediction stack-large">
       <h1>{props.name}</h1>
 
       <div className="filters btn-group stack-exception">
@@ -90,12 +91,12 @@ function App(props) {
       </div>
       <ul
         role="list"
-        className="prediction-list stack-large stack-exception"
+        className="prediction-list "
         aria-labelledby="list-heading">
         {predictionList}
       </ul>
       <Form
-        addprediction={addPrediction}
+        addPrediction={addPrediction}
       />
     </div>
   );

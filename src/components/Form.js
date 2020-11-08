@@ -27,7 +27,6 @@ function Form(props) {
         </h2>
         <input
           type="text"
-          id="new-prediction-input"
           className="input input__lg"
           name="text"
           autoComplete="off"
