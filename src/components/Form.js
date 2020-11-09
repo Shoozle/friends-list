@@ -29,9 +29,9 @@ function Form(props) {
           onChange={handleChange}
           placeholder="Create a new prediction"
         />
-        <button className="btn form__button" type="submit">
+        {/* <button className="btn form__button" type="submit">
           Add
-        </button>
+        </button> */}
       </form>
     );
 }

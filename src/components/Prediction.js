@@ -35,6 +35,10 @@ export default function Prediction(props) {
           type="text" 
           value={newName} 
           onChange={handleChange}
+          placeholder={props.name}
+          className="form__input"
+          required
+          autoComplete="off"
         />
       </div>
       <div className="btn-group">
