@@ -8,6 +8,7 @@
     padding: 0;
     margin: 0;
     box-sizing: inherit;
+    font-family: 'Quattrocento Sans', sans-serif;
 }
 body {
     background-color: var(--main-bg-color);
@@ -18,23 +19,38 @@ body {
     line-height: 1.4;
     letter-spacing: 0.05rem;
 }
-ul {
-    list-style: none;
-}
-ul li {
-    margin-bottom: 3rem;
-}
 .Apparea{
     display: flex;
     justify-content: space-around;
-    padding: 4rem;
     flex-wrap: wrap;
     flex-basis: 50rem;
     flex-direction: row;
 }
-.prediction {
+.prediction__block {
     background-color: white;
-    padding: 1rem 3rem;
     max-width: 60rem;
     margin: 1rem;
+    height: 100%;
+}
+.prediction__heading{
+    height: 7vh;
+    background-image: linear-gradient(
+        to bottom, 
+        rgba(100, 100, 100, .8) 0%, 
+        rgb(22, 22, 22, .6) 80%),
+        url('./components/seanlist.jpg');
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    padding: 1rem 2rem;
+    margin-bottom: 1rem;
+    color: white;
+}
+.prediction__filters{
+    display: flex;
+    justify-content: space-around;
+}
+.prediction__list{
+    list-style: none;
+    
 }

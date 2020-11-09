@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import "./Form.module.css";
+import "./form.css";
 
 function Form(props) {
 
@@ -19,20 +19,17 @@ function Form(props) {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-        <h2 >
-          <label>
-            Create a new prediction below
-          </label>
-        </h2>
+        <form className="form" onSubmit={handleSubmit}>
         <input
+          className="form__input"
           type="text"
           name="text"
           autoComplete="off"
           value={name}
           onChange={handleChange}
+          placeholder="Create a new prediction"
         />
-        <button type="submit">
+        <button className="btn form__button" type="submit">
           Add
         </button>
       </form>

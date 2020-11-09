@@ -83,13 +83,13 @@ function App(props) {
   ));
 
   return (
-    <div className="prediction">
-      <h1>{props.name}</h1>
+    <div className="prediction__block">
+      <h1 className="prediction__heading">{props.name}</h1>
 
-      <div >
+      <div className="prediction__filters">
         {filterList}
       </div>
-      <ul
+      <ul className="prediction__list"
         aria-labelledby="list-heading">
         {predictionList}
       </ul>

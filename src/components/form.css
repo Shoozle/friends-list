@@ -1,0 +1,19 @@
+.form{
+    width: 100%;
+    margin-top: 2rem;
+}
+.form__input{
+    width: 70%;
+    height: 3rem;
+    border: none;
+    padding-left: 2rem;
+    float: left;
+}
+.form__input:focus{
+    outline: none;
+    border-bottom: 2px solid black;
+}
+.form__button {
+    float: right;
+    margin-right: 0;
+}
