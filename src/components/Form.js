@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import "./form.css";
 
 function Form(props) {
 
@@ -13,29 +14,24 @@ function Form(props) {
     function handleSubmit(e) {
         e.preventDefault();
         if (name.length !== 0)
-            props.addTask(name);
+            props.addPrediction(name);
             setName("");
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-        <h2 className="label-wrapper">
-          <label htmlFor="new-todo-input" className="label__lg">
-            What needs to be done?
-          </label>
-        </h2>
+        <form className="form" onSubmit={handleSubmit}>
         <input
+          className="form__input"
           type="text"
-          id="new-todo-input"
-          className="input input__lg"
           name="text"
           autoComplete="off"
           value={name}
           onChange={handleChange}
+          placeholder="Create a new prediction"
         />
-        <button type="submit" className="btn btn__primary btn__lg">
+        {/* <button className="btn form__button" type="submit">
           Add
-        </button>
+        </button> */}
       </form>
     );
 }

@@ -1,0 +1,5 @@
+.btn{
+    cursor: pointer;
+    padding: .8rem 1.5rem;
+    font-size: var(--default-font-size);
+}

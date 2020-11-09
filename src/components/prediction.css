@@ -1,0 +1,18 @@
+.prediction__item{
+    border-bottom: 1px solid black;
+    padding: 1rem 2rem;
+    vertical-align: middle;
+}
+.prediction__item:nth-child(odd) {
+    background-color: #eee;
+}
+.prediction__checkbox{
+    width: 3rem;
+    height: 3rem;
+    margin-right: 2rem;
+    float: right;
+}
+.prediction__text{
+    display: inline-block;
+    margin-bottom: 1rem;
+}

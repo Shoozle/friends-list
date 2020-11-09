@@ -1,0 +1,58 @@
+:root {
+    --main-bg-color: #cdcdcd;
+    --default-font-size: 1.6rem;
+    font-size: 62.5%
+}
+
+*, *::after, *::before {
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+    font-family: 'Quattrocento Sans', sans-serif;
+}
+body {
+    background-color: var(--main-bg-color);
+    font-size: var(--default-font-size);
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: var(--default-font-size);
+    line-height: 1.4;
+    letter-spacing: 0.05rem;
+}
+.Apparea{
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    flex-basis: 50rem;
+    flex-direction: row;
+}
+.prediction__block {
+    background-color: white;
+    max-width: 60rem;
+    margin: 1rem;
+    height: 100%;
+    overflow: hidden;
+}
+.prediction__heading{
+    height: 7vh;
+    background-image: linear-gradient(
+        to bottom, 
+        rgba(100, 100, 100, .8) 0%, 
+        rgb(22, 22, 22, .6) 80%),
+        url('./seanlist.jpg');
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    padding: 1rem 2rem;
+    margin-bottom: 2rem;
+    color: white;
+}
+.prediction__filters{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 2rem;
+}
+.prediction__list{
+    list-style: none;
+    
+}
