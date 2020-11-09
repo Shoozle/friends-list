@@ -21,7 +21,7 @@ function Form(props) {
     return (
         <form onSubmit={handleSubmit}>
         <h2 >
-          <label htmlFor="new-prediction-input">
+          <label>
             Create a new prediction below
           </label>
         </h2>

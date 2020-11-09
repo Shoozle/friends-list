@@ -1,0 +1,5 @@
+.btn{
+    padding: .8rem 1.5rem;
+    margin-right: 1em;
+    font-size: var(--default-font-size);
+}

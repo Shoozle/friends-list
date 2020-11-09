@@ -1,8 +1,9 @@
 import React from 'react';
+import './button.css'
 
 function FilterButton(props) {
     return (
-        <button 
+        <button className="btn"
           type="button" 
           aria-pressed="true" 
           onClick={() => props.setFilter(props.name)}

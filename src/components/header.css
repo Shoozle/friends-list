@@ -1,0 +1,32 @@
+:root{
+    --main-bg-color: #cdcdcd;
+}
+
+.header{
+    height: 35vh;
+    background-image: linear-gradient(
+        to bottom, 
+        rgba(255, 255, 255, .5) 0%, 
+        rgb(22, 22, 22, 0.8) 80%),
+        url('header.jpg');
+    background-size: cover;
+    background-position: top;
+    position: relative;
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 15vh, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 15vh, 0 100%);
+}
+
+.header__textbox{
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+}
+
+.heading__primary{
+    font-family: 'Quattrocento Sans', sans-serif;
+    font-weight: 400;
+    font-size: 2.2em;
+    border-bottom: 0.1em solid rgba(255, 255, 255, 0.2);
+}

@@ -1,11 +1,14 @@
 import React from 'react';
 import headerImage from './header.jpg';
+import './header.css';
 
 function Header() {
 
     return(
         <div className="header">
-            <img className="header__img" src={headerImage} alt="Demon's Souls prediction"/>
+            <div className="header__textbox">
+                <h1 className="heading__primary">Demon's Souls Remake Predictions</h1>
+            </div>
         </div>
     )
 

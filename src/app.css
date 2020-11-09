@@ -1,38 +1,40 @@
 :root {
     --main-bg-color: #cdcdcd;
+    --default-font-size: 1.6rem;
     font-size: 62.5%
 }
 
-*{
-    margin: 0;
+*, *::after, *::before {
     padding: 0;
+    margin: 0;
+    box-sizing: inherit;
 }
 body {
     background-color: var(--main-bg-color);
-    font-size: 1.6em;
+    font-size: var(--default-font-size);
+    font-family: "Lato", sans-serif;
+    font-weight: 400;
+    font-size: var(--default-font-size);
+    line-height: 1.4;
+    letter-spacing: 0.05rem;
 }
 ul {
     list-style: none;
 }
 ul li {
-    margin-bottom: 3em;
-}
-.header{
-    height: 40vh;
-    overflow: hidden;
-    margin-bottom: 4em;
-}
-.header__img{
-    width: 100%;
+    margin-bottom: 3rem;
 }
 .Apparea{
     display: flex;
-    justify-content: space-between;
-    padding: 4em;
+    justify-content: space-around;
+    padding: 4rem;
+    flex-wrap: wrap;
+    flex-basis: 50rem;
+    flex-direction: row;
 }
 .prediction {
     background-color: white;
-    width: 50%;
-    padding: 1em 3em;
-
+    padding: 1rem 3rem;
+    max-width: 60rem;
+    margin: 1rem;
 }
