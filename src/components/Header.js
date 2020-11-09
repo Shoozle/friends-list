@@ -1,5 +1,4 @@
 import React from 'react';
-import headerImage from './header.jpg';
 import './header.css';
 
 function Header() {

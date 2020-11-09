@@ -31,12 +31,11 @@ export default function Prediction(props) {
       <div className="form-group">
         <input 
           id={props.id} 
-          className="text" 
+          className="text form__input" 
           type="text" 
           value={newName} 
           onChange={handleChange}
           placeholder={props.name}
-          className="form__input"
           required
           autoComplete="off"
         />
