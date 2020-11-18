@@ -5,17 +5,17 @@ function Form(props) {
 
     //Usestate gives us both name and setname, here we destructure
     //name is set here to empty string
-    const [name, setName] = useState('');
+    const [guess, setGuess] = useState('');
 
     function handleChange(e) {
-        setName(e.target.value);
+      setGuess(e.target.value);
     }
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (name.length !== 0)
-            props.addPrediction(name);
-            setName("");
+        if (guess.length !== 0)
+            props.addPrediction(guess);
+            setGuess("");
     }
 
     return (
@@ -23,9 +23,9 @@ function Form(props) {
         <input
           className="form__input"
           type="text"
-          name="text"
+          guess="text"
           autoComplete="off"
-          value={name}
+          value={guess}
           onChange={handleChange}
           placeholder="Create a new prediction"
         />

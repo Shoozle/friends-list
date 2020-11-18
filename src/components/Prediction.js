@@ -5,24 +5,16 @@ import './button.css';
 export default function Prediction(props) {
 
   const [isEditing, setEditing] = useState(false);
-  const [newName, setNewName] = useState('');
-
-
-
-  //Stores previous editing value so we can see what we were last doing
-
-
-  //Update either past isediting false or true
-
+  const [newGuess, setnewGuess] = useState('');
 
   function handleChange(e) {
-    setNewName(e.target.value)
+    setnewGuess(e.target.value)
   }
 
   function handleSubmit(e) {
     e.preventDefault();
-    props.editPrediction(props.id, newName);
-    setNewName("")
+    props.editPrediction(props.id, newGuess);
+    setnewGuess("")
     setEditing(false)
   }
 
@@ -33,9 +25,9 @@ export default function Prediction(props) {
           id={props.id} 
           className="text form__input" 
           type="text" 
-          value={newName} 
+          value={newGuess} 
           onChange={handleChange}
-          placeholder={props.name}
+          placeholder={props.guess}
           required
           autoComplete="off"
         />
@@ -54,7 +46,7 @@ export default function Prediction(props) {
     <div>
       <div>
         <label htmlFor={props.id}>
-        <p className="prediction__text"> {props.name} </p>
+        <p className="prediction__text"> {props.guess} </p>
         </label>
         <input
           className="prediction__checkbox"

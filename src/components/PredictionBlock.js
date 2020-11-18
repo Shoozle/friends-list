@@ -22,12 +22,13 @@ function PredictionBlock(props) {
   const [filter, setFilter] = useState('All');
 
   //Nanoid attaches unique id based on previous react objects
-  function addPrediction(name) {
+  function addPrediction(guess) {
     const newprediction = {
       id: "prediction=" + nanoid(),
-      name: name,
+      guess: guess,
       outcome: false
     };
+    //Set the state of predictions to old predictions pushing new prediction at the end
     setPredictions([...predictions, newprediction]);
   }
 
@@ -42,15 +43,14 @@ function PredictionBlock(props) {
   }
 
   function deletePrediction(id) {
-    console.log(id);
     const remainingpredictions = predictions.filter(prediction => id !== prediction.id);
     setPredictions(remainingpredictions);
   }
 
-  function editPrediction(id, newName) {
+  function editPrediction(id, newGuess) {
     const editedpredictionList = predictions.map(prediction => {
       if (id === prediction.id) {
-        return { ...prediction, name: newName }
+        return { ...prediction, guess: newGuess }
       }
       return prediction;
     });
@@ -64,7 +64,7 @@ function PredictionBlock(props) {
     .map(prediction => (
       <Prediction
         id={prediction.id}
-        name={prediction.name}
+        guess={prediction.guess}
         outcome={prediction.outcome}
         key={prediction.id}
         togglePredictionOutcome={togglePredictionOutcome}
@@ -76,7 +76,7 @@ function PredictionBlock(props) {
   const filterList = FILTER_NAMES.map(name => (
     <FilterButton
       key={name}
-      name={name}
+      guess={name}
       isPressed={name === filter}
       setFilter={setFilter}
     />
