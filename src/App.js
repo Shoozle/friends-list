@@ -1,31 +1,30 @@
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Header from './components/Header';
 import PredictionBlock from './components/PredictionBlock';
 
-const CHRISDATA = [];
-
 function App(props) {
 
-  async function getData() {
+  
+
+  function getData() {
     console.log('function call');
-    fetch('https://glacial-castle-18259.herokuapp.com/')
+    fetch('http://localhost:3000/')
     .then(res => res.json())
     .then(predictions => {
       predictions.forEach(prediction => {
-        CHRISDATA.push(prediction);
-        console.log(CHRISDATA);
+        setData(data.push(prediction));
       });
     })
     .catch(err => console.log(err))
   }
 
+  const [data, setData] = useState([])
+ 
   getData();
 
-  
-
   const SEANDATA = [
-    { id: "prediction-0", guess: "Bloodborne 2 comes to PC", outcome: false },
+    { id: "prediction-0", guess: "BloodbornEe 2 comes to PC", outcome: false },
     { id: "prediction-1", guess: "Monolith Soft finally show off new IP", outcome: false },
     { id: "prediction-2", guess: "The first racing game that doesn't suck in 10 years finally comes out and it's a Burnout game made by Criterion", outcome: false },
   ];
@@ -40,8 +39,8 @@ function App(props) {
       <div>
         <Header />
         <div className="Apparea">
-          <PredictionBlock name="Sean's Predictions" predictions={SEANDATA}/>
-          <PredictionBlock name="Chris' Predictions" predictions={CHRISDATA} />
+          {/* <PredictionBlock name="Sean's Predictions" predictions={SEANDATA}/> */}
+          <PredictionBlock name="Chris' Predictions" predictions={data} />
         </div>
       </div>
     );
