@@ -13,21 +13,28 @@ function App(props) {
     .then(res => res.json())
     .then(predictions => {
       predictions.forEach(prediction => {
-        setData(data.push(prediction));
+        console.log(prediction);
+        if (prediction.owner === "Chris") {
+        setChrisData(chrisData.push(prediction));
+        }
+        if (prediction.owner === "Sean"){
+          setSeanData(seanData.push(prediction));
+        }
       });
     })
     .catch(err => console.log(err))
   }
 
-  const [data, setData] = useState([])
+  const [chrisData, setChrisData] = useState([])
+  const [seanData, setSeanData] = useState([])
  
   getData();
 
-  const SEANDATA = [
-    { id: "prediction-0", guess: "BloodbornEe 2 comes to PC", outcome: false },
-    { id: "prediction-1", guess: "Monolith Soft finally show off new IP", outcome: false },
-    { id: "prediction-2", guess: "The first racing game that doesn't suck in 10 years finally comes out and it's a Burnout game made by Criterion", outcome: false },
-  ];
+  // const SEANDATA = [
+  //   { id: "prediction-0", guess: "BloodbornEe 2 comes to PC", outcome: false },
+  //   { id: "prediction-1", guess: "Monolith Soft finally show off new IP", outcome: false },
+  //   { id: "prediction-2", guess: "The first racing game that doesn't suck in 10 years finally comes out and it's a Burnout game made by Criterion", outcome: false },
+  // ];
   
   // const CCHRISDATA = [
   //   { id: "prediction-0", name: "Demon's Souls Remake gets 100 on metacritic", outcome: false },
@@ -39,8 +46,8 @@ function App(props) {
       <div>
         <Header />
         <div className="Apparea">
-          {/* <PredictionBlock name="Sean's Predictions" predictions={SEANDATA}/> */}
-          <PredictionBlock name="Chris' Predictions" predictions={data} />
+          <PredictionBlock name="Sean's Predictions" predictions={seanData}/>
+          <PredictionBlock name="Chris' predictions" predictions={chrisData} />
         </div>
       </div>
     );

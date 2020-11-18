@@ -6,7 +6,7 @@ function Header() {
     return(
         <div className="header">
             <div className="header__textbox">
-                <h1 className="heading__primary">Demon's Souls Remake Predictions</h1>
+                <h1 className="heading__primary">2021 Video Game Predictions</h1>
             </div>
         </div>
     )
