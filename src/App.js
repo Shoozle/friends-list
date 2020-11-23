@@ -8,12 +8,10 @@ function App(props) {
   
 
   function getData() {
-    console.log('function call');
     fetch('http://localhost:3000/')
     .then(res => res.json())
     .then(predictions => {
       predictions.forEach(prediction => {
-        console.log(prediction);
         if (prediction.owner === "Chris") {
         setChrisData(chrisData.push(prediction));
         }
@@ -46,8 +44,8 @@ function App(props) {
       <div>
         <Header />
         <div className="Apparea">
-          <PredictionBlock name="Sean's Predictions" predictions={seanData}/>
-          <PredictionBlock name="Chris' predictions" predictions={chrisData} />
+          <PredictionBlock owner="Sean" name="Sean's Predictions" predictions={seanData}/>
+          <PredictionBlock owner="Chris" name="Chris' predictions" predictions={chrisData} />
         </div>
       </div>
     );

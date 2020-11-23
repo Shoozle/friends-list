@@ -6,6 +6,7 @@ function Form(props) {
     //Usestate gives us both name and setname, here we destructure
     //name is set here to empty string
     const [guess, setGuess] = useState('');
+    const [id, setId] = useState();
 
     function handleChange(e) {
       setGuess(e.target.value);
@@ -13,10 +14,20 @@ function Form(props) {
 
     function handleSubmit(e) {
         e.preventDefault();
-        if (guess.length !== 0)
-            props.addPrediction(guess);
-            setGuess("");
-    }
+        if (guess.length !== 0) {
+            fetch('http://localhost:3000/addguess', {
+              method: 'post',
+              headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                id: props.newid,
+                guess: guess,
+                owner: props.guessOwner,
+                outcome: false
+              })
+            })
+            .catch(err => console.log(err))
+          }
+        }
 
     return (
         <form className="form" onSubmit={handleSubmit}>

@@ -20,16 +20,34 @@ function PredictionBlock(props) {
 
   //Default state is to show ALL the predictions
   const [filter, setFilter] = useState('All');
+  const [id, setId] = useState(0);
+
+  function maxId() {
+    fetch('http://localhost:3000/returnid')
+        .then(res => res.json())
+        .then(data =>  { 
+          setId(data[0].max + 1)
+        })
+        .catch(err => console.log(err))
+  }
 
   //Nanoid attaches unique id based on previous react objects
   function addPrediction(guess) {
+    fetch('http://localhost:3000/returnid')
+        .then(res => res.json())
+        .then(data =>  { 
+          setId(data[0].max)
+        })
+        .catch(err => console.log(err))
     const newprediction = {
-      id: "prediction=" + nanoid(),
+      id: "prediction=" + id,
       guess: guess,
       outcome: false
     };
     //Set the state of predictions to old predictions pushing new prediction at the end
     setPredictions([...predictions, newprediction]);
+    setId(id+1);
+    console.log(id);
   }
 
   function togglePredictionOutcome(id) {
@@ -82,6 +100,8 @@ function PredictionBlock(props) {
     />
   ));
 
+  maxId();
+
   return (
     <div className="prediction__block">
       <h1 className="prediction__heading">{props.name}</h1>
@@ -94,7 +114,9 @@ function PredictionBlock(props) {
         {predictionList}
       </ul>
       <Form
+        guessOwner={props.owner}
         addPrediction={addPrediction}
+        newid={id}
       />
     </div>
   );
