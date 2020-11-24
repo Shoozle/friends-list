@@ -5,8 +5,6 @@ import PredictionBlock from './components/PredictionBlock';
 
 function App(props) {
 
-  
-
   function getData() {
     fetch('http://localhost:3000/')
     .then(res => res.json())
@@ -25,6 +23,7 @@ function App(props) {
 
   const [chrisData, setChrisData] = useState([])
   const [seanData, setSeanData] = useState([])
+  const [userloggedin, setuserloggedin] = useState("Sean");
  
   getData();
 
@@ -44,8 +43,8 @@ function App(props) {
       <div>
         <Header />
         <div className="Apparea">
-          <PredictionBlock owner="Sean" name="Sean's Predictions" predictions={seanData}/>
-          <PredictionBlock owner="Chris" name="Chris' predictions" predictions={chrisData} />
+          <PredictionBlock owner="Sean" name="Sean's Predictions" predictions={seanData} reload={getData}/>
+          <PredictionBlock owner="Chris" name="Chris' predictions" predictions={chrisData} reload={getData}/>
         </div>
       </div>
     );

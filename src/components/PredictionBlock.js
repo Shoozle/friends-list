@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Prediction from "./Prediction";
 import Form from "./Form";
 import FilterButton from "./FilterButton";
-import { nanoid } from "nanoid";
 import './predictionBlock.css';
 
 
@@ -21,7 +20,8 @@ function PredictionBlock(props) {
   //Default state is to show ALL the predictions
   const [filter, setFilter] = useState('All');
   const [id, setId] = useState(0);
-
+  const [predictions, setPredictions] = useState(props.predictions);
+  
   function maxId() {
     fetch('http://localhost:3000/returnid')
         .then(res => res.json())
@@ -31,20 +31,15 @@ function PredictionBlock(props) {
         .catch(err => console.log(err))
   }
 
-  //Nanoid attaches unique id based on previous react objects
   function addPrediction(guess) {
-    fetch('http://localhost:3000/returnid')
-        .then(res => res.json())
-        .then(data =>  { 
-          setId(data[0].max)
-        })
-        .catch(err => console.log(err))
+    maxId();
     const newprediction = {
       id: "prediction=" + id,
       guess: guess,
       outcome: false
     };
     //Set the state of predictions to old predictions pushing new prediction at the end
+    props.reload();
     setPredictions([...predictions, newprediction]);
     setId(id+1);
     console.log(id);
@@ -75,8 +70,6 @@ function PredictionBlock(props) {
     setPredictions(editedpredictionList);
   }
 
-  const [predictions, setPredictions] = useState(props.predictions);
-
   const predictionList = predictions
     .filter(FILTER_MAP[filter])
     .map(prediction => (
@@ -105,7 +98,6 @@ function PredictionBlock(props) {
   return (
     <div className="prediction__block">
       <h1 className="prediction__heading">{props.name}</h1>
-
       <div className="prediction__filters">
         {filterList}
       </div>

@@ -27,7 +27,9 @@ function Form(props) {
             })
             .catch(err => console.log(err))
           }
+        props.addPrediction();
         }
+        
 
     return (
         <form className="form" onSubmit={handleSubmit}>
