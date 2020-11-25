@@ -27,7 +27,8 @@ function Form(props) {
             })
             .catch(err => console.log(err))
           }
-        props.addPrediction();
+        props.addPrediction(guess);
+        setGuess('');
         }
         
 
