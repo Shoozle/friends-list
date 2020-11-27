@@ -4,7 +4,7 @@
     vertical-align: middle;
 }
 .prediction__item:nth-child(odd) {
-    background-color: #eee;
+    background-color: rgb(105, 104, 104);
 }
 .prediction__checkbox{
     width: 3rem;

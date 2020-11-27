@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Prediction from "./Prediction";
 import Form from "./Form";
 import FilterButton from "./FilterButton";
-import { nanoid } from "nanoid";
 import './predictionBlock.css';
 
 
@@ -20,51 +19,104 @@ function PredictionBlock(props) {
 
   //Default state is to show ALL the predictions
   const [filter, setFilter] = useState('All');
+  const [id, setId] = useState(0);
+  const [predictions, setPredictions] = useState(props.predictions);
 
-  //Nanoid attaches unique id based on previous react objects
-  function addPrediction(name) {
-    const newprediction = {
-      id: "prediction=" + nanoid(),
-      name: name,
-      outcome: false
-    };
-    setPredictions([...predictions, newprediction]);
+  function currentid() {
+    maxId();
+    return id;
   }
 
-  function togglePredictionOutcome(id) {
+  function addid() {
+    setId(id + 1);
+  }
+  
+  function maxId() {
+    fetch('https://glacial-castle-18259.herokuapp.com/returnid')
+        .then(res => res.json())
+        .then(data =>  { 
+          setId(data[0].max)
+        })
+        .catch(err => console.log(err))
+  }
+
+  function addPrediction(guess) {
+    //addid is called prior to this function call so id is already added
+    const newprediction = {
+      id: "prediction=" + id,
+      guess: guess,
+      outcome: false
+    };
+    //Set the state of predictions to old predictions pushing new prediction at the end
+    setPredictions([...predictions, newprediction]);
+    addid();
+  }
+
+  function togglePredictionOutcome(id, outcome) {
     const updatedPredictions = predictions.map(prediction => {
       if (id === prediction.id) {
+        fetch('https://glacial-castle-18259.herokuapp.com/editoutcome', {
+          method: 'post',
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            id: id,
+            outcome: outcome
+          })
+        })
+        .then()
+        .catch(err => console.log(err))
         return { ...prediction, outcome: !prediction.outcome }
       }
       return prediction;
     });
+
+    
+
     setPredictions(updatedPredictions);
   }
 
   function deletePrediction(id) {
-    console.log(id);
+    fetch('https://glacial-castle-18259.herokuapp.com/delete', {
+      method: 'post',
+      headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: id
+      })
+    })
+      .then()
+      .catch(err => console.log(err))
     const remainingpredictions = predictions.filter(prediction => id !== prediction.id);
     setPredictions(remainingpredictions);
   }
 
-  function editPrediction(id, newName) {
+  function editPrediction(id, newGuess) {
     const editedpredictionList = predictions.map(prediction => {
       if (id === prediction.id) {
-        return { ...prediction, name: newName }
+        return { ...prediction, guess: newGuess }
       }
       return prediction;
     });
+
+    fetch('https://glacial-castle-18259.herokuapp.com/editguess', {
+      method: 'post',
+      headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: id,
+        guess: newGuess
+      })
+    })
+    .then()
+    .catch(err => console.log(err))
+
     setPredictions(editedpredictionList);
   }
-
-  const [predictions, setPredictions] = useState(props.predictions);
 
   const predictionList = predictions
     .filter(FILTER_MAP[filter])
     .map(prediction => (
       <Prediction
         id={prediction.id}
-        name={prediction.name}
+        guess={prediction.guess}
         outcome={prediction.outcome}
         key={prediction.id}
         togglePredictionOutcome={togglePredictionOutcome}
@@ -76,16 +128,17 @@ function PredictionBlock(props) {
   const filterList = FILTER_NAMES.map(name => (
     <FilterButton
       key={name}
-      name={name}
+      guess={name}
       isPressed={name === filter}
       setFilter={setFilter}
     />
   ));
 
+  maxId();
+
   return (
     <div className="prediction__block">
       <h1 className="prediction__heading">{props.name}</h1>
-
       <div className="prediction__filters">
         {filterList}
       </div>
@@ -94,7 +147,10 @@ function PredictionBlock(props) {
         {predictionList}
       </ul>
       <Form
+        guessOwner={props.owner}
         addPrediction={addPrediction}
+        getid={currentid}
+        addid={addid}
       />
     </div>
   );

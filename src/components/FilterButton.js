@@ -6,9 +6,9 @@ function FilterButton(props) {
         <button className="btn"
           type="button" 
           aria-pressed="true" 
-          onClick={() => props.setFilter(props.name)}
+          onClick={() => props.setFilter(props.guess)}
           >
-          <span>{props.name}</span>
+          <span>{props.guess}</span>
         </button>
     );
 }

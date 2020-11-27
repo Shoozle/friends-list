@@ -1,0 +1,16 @@
+[  
+  { 
+    "id" : "prediction-0", 
+    "name": "Bloodborne 2 comes to PC", 
+    "outcome" : false 
+  },
+  { 
+    "id": "prediction-1", 
+    "name": "Monolith Soft finally show off new IP", 
+    "outcome": false 
+  },
+  { "id": "prediction-2", 
+    "name": "The first racing game that doesn't suck in 10 years finally comes out and it's a Burnout game made by Criterion", 
+    "outcome": false 
+  }
+]

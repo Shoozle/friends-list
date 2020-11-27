@@ -5,27 +5,47 @@ function Form(props) {
 
     //Usestate gives us both name and setname, here we destructure
     //name is set here to empty string
-    const [name, setName] = useState('');
+    const [guess, setGuess] = useState('');
+    const [id, setid] = useState(0);
+
 
     function handleChange(e) {
-        setName(e.target.value);
+      setGuess(e.target.value);
+      setid(props.getid);
     }
 
     function handleSubmit(e) {
+        let newid = props.getid();
+        setid(newid + 1)
         e.preventDefault();
-        if (name.length !== 0)
-            props.addPrediction(name);
-            setName("");
-    }
+        if (guess.length !== 0) {
+            fetch('https://glacial-castle-18259.herokuapp.com/addguess', {
+              method: 'post',
+              headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+              body: JSON.stringify({
+                id: newid + 1,
+                guess: guess,
+                owner: props.guessOwner,
+                outcome: false
+              })
+            })
+            .then()
+            .catch(err => console.log(err))
+            props.addid();
+            props.addPrediction(guess);
+            setGuess('');
+          }
+        }
+        
 
     return (
         <form className="form" onSubmit={handleSubmit}>
         <input
           className="form__input"
           type="text"
-          name="text"
+          guess="text"
           autoComplete="off"
-          value={name}
+          value={guess}
           onChange={handleChange}
           placeholder="Create a new prediction"
         />
