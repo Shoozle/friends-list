@@ -32,7 +32,7 @@ function PredictionBlock(props) {
   }
   
   function maxId() {
-    fetch('http://localhost:3000/returnid')
+    fetch('https://glacial-castle-18259.herokuapp.com/returnid')
         .then(res => res.json())
         .then(data =>  { 
           setId(data[0].max)
@@ -55,7 +55,7 @@ function PredictionBlock(props) {
   function togglePredictionOutcome(id, outcome) {
     const updatedPredictions = predictions.map(prediction => {
       if (id === prediction.id) {
-        fetch('http://localhost:3000/editoutcome', {
+        fetch('https://glacial-castle-18259.herokuapp.com/editoutcome', {
           method: 'post',
           headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -76,7 +76,7 @@ function PredictionBlock(props) {
   }
 
   function deletePrediction(id) {
-    fetch('http://localhost:3000/delete', {
+    fetch('https://glacial-castle-18259.herokuapp.com/delete', {
       method: 'post',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -97,7 +97,7 @@ function PredictionBlock(props) {
       return prediction;
     });
 
-    fetch('http://localhost:3000/editguess', {
+    fetch('https://glacial-castle-18259.herokuapp.com/editguess', {
       method: 'post',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify({

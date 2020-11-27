@@ -6,7 +6,7 @@ import PredictionBlock from './components/PredictionBlock';
 function App(props) {
 
   function getData() {
-    fetch('http://localhost:3000/')
+    fetch('https://glacial-castle-18259.herokuapp.com/')
     .then(res => res.json())
     .then(predictions => {
       predictions.forEach(prediction => {
