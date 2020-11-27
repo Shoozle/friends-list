@@ -2,7 +2,7 @@
   "name": "friends-list",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://shoozle.github.io",
+  "homepage": "https://shoozle.github.io/friends-list",
   "dependencies": {
     "@testing-library/jest-dom": "^5.11.5",
     "@testing-library/react": "^11.1.1",
