@@ -53,7 +53,7 @@ export default function Prediction(props) {
           id={props.id}
           type="checkbox"
           defaultChecked={props.outcome}
-          onChange={() => props.togglePredictionOutcome(props.id)}
+          onChange={() => props.togglePredictionOutcome(props.id, props.outcome)}
         />
       </div>
       <div >

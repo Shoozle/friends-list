@@ -52,13 +52,26 @@ function PredictionBlock(props) {
     addid();
   }
 
-  function togglePredictionOutcome(id) {
+  function togglePredictionOutcome(id, outcome) {
     const updatedPredictions = predictions.map(prediction => {
       if (id === prediction.id) {
+        fetch('http://localhost:3000/editoutcome', {
+          method: 'post',
+          headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+          body: JSON.stringify({
+            id: id,
+            outcome: outcome
+          })
+        })
+        .then()
+        .catch(err => console.log(err))
         return { ...prediction, outcome: !prediction.outcome }
       }
       return prediction;
     });
+
+    
+
     setPredictions(updatedPredictions);
   }
 
@@ -83,6 +96,18 @@ function PredictionBlock(props) {
       }
       return prediction;
     });
+
+    fetch('http://localhost:3000/editguess', {
+      method: 'post',
+      headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: id,
+        guess: newGuess
+      })
+    })
+    .then()
+    .catch(err => console.log(err))
+
     setPredictions(editedpredictionList);
   }
 
