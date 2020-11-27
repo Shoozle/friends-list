@@ -35,10 +35,9 @@ function PredictionBlock(props) {
     fetch('http://localhost:3000/returnid')
         .then(res => res.json())
         .then(data =>  { 
-          setId(data[0].max + 1)
+          setId(data[0].max)
         })
         .catch(err => console.log(err))
-    console.log(`Max id when called is ${id}`)
   }
 
   function addPrediction(guess) {
@@ -50,7 +49,7 @@ function PredictionBlock(props) {
     };
     //Set the state of predictions to old predictions pushing new prediction at the end
     setPredictions([...predictions, newprediction]);
-    console.log(`Added id of ${id}`);
+    addid();
   }
 
   function togglePredictionOutcome(id) {
@@ -75,7 +74,6 @@ function PredictionBlock(props) {
       .catch(err => console.log(err))
     const remainingpredictions = predictions.filter(prediction => id !== prediction.id);
     setPredictions(remainingpredictions);
-    console.log(id);
   }
 
   function editPrediction(id, newGuess) {

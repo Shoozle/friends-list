@@ -11,7 +11,7 @@ function Form(props) {
 
     function handleChange(e) {
       setGuess(e.target.value);
-      console.log(`Max id is ${props.getid()} and we are adding + 1 when submitting`);
+      setid(props.getid);
     }
 
     function handleSubmit(e) {
@@ -23,19 +23,18 @@ function Form(props) {
               method: 'post',
               headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
               body: JSON.stringify({
-                id: newid,
+                id: newid + 1,
                 guess: guess,
                 owner: props.guessOwner,
                 outcome: false
               })
             })
-            .then(
-              props.addid()
-            )
+            .then()
             .catch(err => console.log(err))
+            props.addid();
+            props.addPrediction(guess);
+            setGuess('');
           }
-        props.addPrediction(guess);
-        setGuess('');
         }
         
 
