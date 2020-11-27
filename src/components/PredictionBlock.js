@@ -21,6 +21,15 @@ function PredictionBlock(props) {
   const [filter, setFilter] = useState('All');
   const [id, setId] = useState(0);
   const [predictions, setPredictions] = useState(props.predictions);
+
+  function currentid() {
+    maxId();
+    return id;
+  }
+
+  function addid() {
+    setId(id + 1);
+  }
   
   function maxId() {
     fetch('http://localhost:3000/returnid')
@@ -29,20 +38,19 @@ function PredictionBlock(props) {
           setId(data[0].max + 1)
         })
         .catch(err => console.log(err))
+    console.log(`Max id when called is ${id}`)
   }
 
   function addPrediction(guess) {
-    maxId();
+    //addid is called prior to this function call so id is already added
     const newprediction = {
       id: "prediction=" + id,
       guess: guess,
       outcome: false
     };
     //Set the state of predictions to old predictions pushing new prediction at the end
-    props.reload();
     setPredictions([...predictions, newprediction]);
-    setId(id+1);
-    console.log(id);
+    console.log(`Added id of ${id}`);
   }
 
   function togglePredictionOutcome(id) {
@@ -56,8 +64,18 @@ function PredictionBlock(props) {
   }
 
   function deletePrediction(id) {
+    fetch('http://localhost:3000/delete', {
+      method: 'post',
+      headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: id
+      })
+    })
+      .then()
+      .catch(err => console.log(err))
     const remainingpredictions = predictions.filter(prediction => id !== prediction.id);
     setPredictions(remainingpredictions);
+    console.log(id);
   }
 
   function editPrediction(id, newGuess) {
@@ -108,7 +126,8 @@ function PredictionBlock(props) {
       <Form
         guessOwner={props.owner}
         addPrediction={addPrediction}
-        newid={id}
+        getid={currentid}
+        addid={addid}
       />
     </div>
   );

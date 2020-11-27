@@ -6,25 +6,32 @@ function Form(props) {
     //Usestate gives us both name and setname, here we destructure
     //name is set here to empty string
     const [guess, setGuess] = useState('');
-    const [id, setId] = useState();
+    const [id, setid] = useState(0);
+
 
     function handleChange(e) {
       setGuess(e.target.value);
+      console.log(`Max id is ${props.getid()} and we are adding + 1 when submitting`);
     }
 
     function handleSubmit(e) {
+        let newid = props.getid();
+        setid(newid + 1)
         e.preventDefault();
         if (guess.length !== 0) {
             fetch('http://localhost:3000/addguess', {
               method: 'post',
               headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
               body: JSON.stringify({
-                id: props.newid,
+                id: newid,
                 guess: guess,
                 owner: props.guessOwner,
                 outcome: false
               })
             })
+            .then(
+              props.addid()
+            )
             .catch(err => console.log(err))
           }
         props.addPrediction(guess);
