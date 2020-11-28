@@ -1,12 +1,31 @@
 
 import React, { useState, useEffect } from "react";
 import Header from './components/Header';
+import Navigation from './components/Navigation';
 import PredictionBlock from './components/PredictionBlock';
 
 function App(props) {
 
+  const [chrisData, setChrisData] = useState([]);
+  const [seanData, setSeanData] = useState([]);
+  const [loginpage, setloginpage] = useState(false);
+
+  const [user, setUser] = useState(
+    {
+      name: "Sean",
+      loggedin: true,
+    }
+  )
+
+  function signout() {
+    setUser({
+      name: "",
+      loggedin: false
+    })
+  }
+
   function getData() {
-    fetch('https://glacial-castle-18259.herokuapp.com/')
+    fetch('http://localhost:3000/')
     .then(res => res.json())
     .then(predictions => {
       predictions.forEach(prediction => {
@@ -19,29 +38,18 @@ function App(props) {
       });
     })
     .catch(err => console.log(err))
-  }
+  } 
 
-  const [chrisData, setChrisData] = useState([])
-  const [seanData, setSeanData] = useState([])
-  const [userloggedin, setuserloggedin] = useState("Sean");
-  
+  function setpage(page) {
+    setloginpage(true)
+  }
  
   getData();
-
-  // const SEANDATA = [
-  //   { id: "prediction-0", guess: "BloodbornEe 2 comes to PC", outcome: false },
-  //   { id: "prediction-1", guess: "Monolith Soft finally show off new IP", outcome: false },
-  //   { id: "prediction-2", guess: "The first racing game that doesn't suck in 10 years finally comes out and it's a Burnout game made by Criterion", outcome: false },
-  // ];
-  
-  // const CCHRISDATA = [
-  //   { id: "prediction-0", name: "Demon's Souls Remake gets 100 on metacritic", outcome: false },
-  //   { id: "prediction-1", name: "The first racing game that doesn't suck in 10 years finally comes out and it's a Burnout game made by Criterion", outcome: false },
-  // ];
 
     return (
 
       <div>
+        <Navigation signout={signout} username={user.name} issignedin={user.loggedin} showlogin={setpage}/>
         <Header />
         <div className="Apparea">
           <PredictionBlock owner="Sean" name="Sean's Predictions" predictions={seanData}/>

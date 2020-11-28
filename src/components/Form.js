@@ -19,7 +19,7 @@ function Form(props) {
         setid(newid + 1)
         e.preventDefault();
         if (guess.length !== 0) {
-            fetch('https://glacial-castle-18259.herokuapp.com/addguess', {
+            fetch('http://localhost:3000/addguess', {
               method: 'post',
               headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
               body: JSON.stringify({
@@ -40,6 +40,7 @@ function Form(props) {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
+        <div className="form__input__wrapper">
         <input
           className="form__input"
           type="text"
@@ -48,7 +49,9 @@ function Form(props) {
           value={guess}
           onChange={handleChange}
           placeholder="Create a new prediction"
+          maxLength="140"
         />
+        </div>
         {/* <button className="btn form__button" type="submit">
           Add
         </button> */}

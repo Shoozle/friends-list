@@ -1,23 +1,30 @@
 .form{
-    width: 100%;
-    margin-top: 2rem;
+    width: 90%;
 }
 .form__input{
-    width: 100%;
-    height: 3rem;
+    height: auto;
     border: none;
-    padding-left: 2rem;
+    padding: 1em 1.5em;
     float: left;
     font-size: 1.7rem;
     background-color: transparent;
     overflow: hidden;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    width: 100%;
+    color: white;
 }
 .form__input:focus{
     outline: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #bbb;
 }
 .form__button {
     cursor: pointer;
     float: right;
     margin-right: 0;
+}
+.form__input__wrapper {
+    max-width: 100%;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
 }
