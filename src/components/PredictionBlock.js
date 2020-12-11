@@ -22,13 +22,17 @@ function PredictionBlock(props) {
   const [id, setId] = useState(0);
   const [predictions, setPredictions] = useState(props.predictions);
 
+
+  //STATE IS ASYNCHRONOUS, SO IT WILL NOT ALWAYS BE REFLECTIVE
   function currentid() {
     maxId();
     return id;
   }
 
   function addid() {
-    setId(id + 1);
+    setId(() => {
+      return id+1
+    });
   }
   
   function maxId() {
@@ -43,7 +47,7 @@ function PredictionBlock(props) {
   function addPrediction(guess) {
     //addid is called prior to this function call so id is already added
     const newprediction = {
-      id: "prediction=" + id,
+      id: id,
       guess: guess,
       outcome: false
     };
@@ -69,9 +73,6 @@ function PredictionBlock(props) {
       }
       return prediction;
     });
-
-    
-
     setPredictions(updatedPredictions);
   }
 
@@ -107,7 +108,6 @@ function PredictionBlock(props) {
     })
     .then()
     .catch(err => console.log(err))
-
     setPredictions(editedpredictionList);
   }
 

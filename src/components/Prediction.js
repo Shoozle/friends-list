@@ -6,7 +6,7 @@ export default function Prediction(props) {
 
   const [isEditing, setEditing] = useState(false);
   const [newGuess, setnewGuess] = useState('');
-
+  
   function handleChange(e) {
     setnewGuess(e.target.value)
   }
@@ -19,13 +19,13 @@ export default function Prediction(props) {
   }
 
   const editingTemplate = (
+    
     <form className="stack-small" onSubmit={handleSubmit}>
       <div className="form-group">
-        <input 
+        <input
           id={props.id} 
           className="text form__input" 
           type="text" 
-          value={newGuess} 
           onChange={handleChange}
           placeholder={props.guess}
           required
