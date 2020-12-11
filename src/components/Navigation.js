@@ -21,7 +21,7 @@ function Navigation(props) {
         <div className="nav">
             <ul className="nav__items">
                 <li className="nav__item">
-                <a href="#" onClick={props.showlogin("login")} className="nav__link">Login</a>
+                <a href="#" onClick={props.showlogin(true)} className="nav__link">Login</a>
                 </li>
             </ul>
         </div>

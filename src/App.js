@@ -1,62 +1,97 @@
 
-import React, { useState, useEffect } from "react";
+import React, { Component } from "react";
 import Header from './components/Header';
-import Navigation from './components/Navigation';
 import PredictionBlock from './components/PredictionBlock';
 
-function App(props) {
-
-  const [chrisData, setChrisData] = useState([]);
-  const [seanData, setSeanData] = useState([]);
-  const [loginpage, setloginpage] = useState(false);
-
-  const [user, setUser] = useState(
-    {
-      name: "Sean",
-      loggedin: true,
+class App extends Component {
+  state = {
+    chrisData: {
+      owner: "Chris",
+      predictions: [
+        {
+          id: 0,
+          guess: "I was able to justify my PS5 purchase",
+          commited: false,
+          outcome: false
+        }
+        // {
+        //   id: 1,
+        //   guess: "Need for Speed is an excellent Burnout game",
+        //   commited: true,
+        //   outcome: true
+        // }
+      ]
+    },
+    seanData: {
+      owner: "Sean",
+      predictions: [
+        {
+          id: 2,
+          guess: "Elden Ring is a 10",
+          commited: true,
+          outcome: true
+        }
+        
+        // {
+        //   id: 3,
+        //   guess: "Bloodborne comes to PC at last",
+        //   commited: true,
+        //   outcome: false
+        // },
+        // {
+        //   id: 4,
+        //   guess: "All Yakuza games finally on PC",
+        //   commited: true,
+        //   outcome: true
+        // }
+      ]
     }
-  )
+  }
 
-  function signout() {
-    setUser({
-      name: "",
-      loggedin: false
+
+  //Loop through all objects within objects inside state
+  changeOutcomeHandler = (id) => {
+    Object.entries(this.state).forEach(entry1 => {
+      const [key, value] = entry1;
+      let data = key;
+      for (let i=0; i<value.predictions.length; i++) {
+        Object.entries(value.predictions[i]).forEach(entry2 => {
+          const [key, value] = entry2;
+          console.log(entry2);
+          if (value === id) {
+            let newState = !value.outcome;
+            this.setState((state) => {
+              //console.log(key, value)
+              //return { state[data].predictions[index].outcome : newState };
+            });
+          }
+        })
+      }
     })
   }
 
-  function getData() {
-    fetch('http://localhost:3000/')
-    .then(res => res.json())
-    .then(predictions => {
-      predictions.forEach(prediction => {
-        if (prediction.owner === "Chris") {
-        setChrisData(chrisData.push(prediction));
-        }
-        if (prediction.owner === "Sean"){
-          setSeanData(seanData.push(prediction));
-        }
-      });
-    })
-    .catch(err => console.log(err))
-  } 
+  render = () => {
+    let predictionBlocks = [];
 
-  function setpage(page) {
-    setloginpage(true)
-  }
- 
-  getData();
+    Object.entries(this.state).forEach((entry, index) => {
+      const [key, value] = entry;
+      predictionBlocks.push(
+        <PredictionBlock
+          key={index}
+          owner={value.owner}
+          predictions={value.predictions}
+          changeOutcome={(id) => this.changeOutcomeHandler(id)}
+        />)
+    })
 
     return (
 
       <div>
-        <Navigation signout={signout} username={user.name} issignedin={user.loggedin} showlogin={setpage}/>
         <Header />
-        <div className="Apparea">
-          <PredictionBlock owner="Sean" name="Sean's Predictions" predictions={seanData}/>
-          <PredictionBlock owner="Chris" name="Chris' predictions" predictions={chrisData} />
-        </div>
+        {predictionBlocks}
       </div>
     );
   }
+}
 
-  export default App;
+export default App;
