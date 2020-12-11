@@ -16,6 +16,9 @@ function App(props) {
         if (prediction.owner === "Sean"){
           setSeanData(seanData.push(prediction));
         }
+        if (prediction.owner === "Justus"){
+          setJustusData(justusData.push(prediction));
+        }
       });
     })
     .catch(err => console.log(err))
@@ -23,6 +26,7 @@ function App(props) {
 
   const [chrisData, setChrisData] = useState([])
   const [seanData, setSeanData] = useState([])
+  const [justusData, setJustusData] = useState([])
   const [userloggedin, setuserloggedin] = useState("Sean");
   
  
@@ -46,6 +50,7 @@ function App(props) {
         <div className="Apparea">
           <PredictionBlock owner="Sean" name="Sean's Predictions" predictions={seanData}/>
           <PredictionBlock owner="Chris" name="Chris' predictions" predictions={chrisData} />
+          <PredictionBlock owner="Justus" name="Justus' predictions" predictions={justusData} />
         </div>
       </div>
     );
