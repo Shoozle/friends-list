@@ -48,6 +48,7 @@ function Form(props) {
           value={guess}
           onChange={handleChange}
           placeholder="Create a new prediction"
+          maxLength="120"
         />
         {/* <button className="btn form__button" type="submit">
           Add

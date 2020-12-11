@@ -30,6 +30,7 @@ export default function Prediction(props) {
           placeholder={props.guess}
           required
           autoComplete="off"
+          maxLength="120"
         />
       </div>
       <div className="btn-group">

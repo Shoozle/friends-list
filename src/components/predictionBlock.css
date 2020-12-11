@@ -31,6 +31,7 @@ body {
     overflow: hidden;
     flex: 0 1 30%;
     justify-content: flex-start;
+    max-width: 55rem;
 }
 .prediction__heading{
     height: 4rem;
@@ -60,6 +61,6 @@ body {
 @media only screen and (max-width: 1000px) {
     .prediction__block {
         flex: 0 0 100%;
-        margin-bottom: 2rem;
+        margin-bottom: 5rem;
     }
 }
