@@ -12,10 +12,10 @@ function App(props) {
       predictions.forEach(prediction => {
         if (prediction.owner === "Chris") {
         setChrisData(chrisData.push(prediction));
-        }
+        } else
         if (prediction.owner === "Sean"){
           setSeanData(seanData.push(prediction));
-        }
+        } else
         if (prediction.owner === "Justus"){
           setJustusData(justusData.push(prediction));
         }

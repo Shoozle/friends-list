@@ -24,7 +24,7 @@ export default function Prediction(props) {
       <div className="form-group">
         <input
           id={props.id} 
-          className="text form__input" 
+          className="text form__input--editing" 
           type="text" 
           onChange={handleChange}
           placeholder={props.guess}

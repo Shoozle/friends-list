@@ -47,13 +47,12 @@ function PredictionBlock(props) {
   function addPrediction(guess) {
     //addid is called prior to this function call so id is already added
     const newprediction = {
-      id: id,
+      id: id+1,
       guess: guess,
       outcome: false
     };
     //Set the state of predictions to old predictions pushing new prediction at the end
     setPredictions([...predictions, newprediction]);
-    addid();
   }
 
   function togglePredictionOutcome(id, outcome) {
@@ -77,6 +76,7 @@ function PredictionBlock(props) {
   }
 
   function deletePrediction(id) {
+    console.log(id);
     fetch('https://glacial-castle-18259.herokuapp.com/delete', {
       method: 'post',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
