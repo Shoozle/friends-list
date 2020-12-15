@@ -49,8 +49,8 @@ function App(props) {
         <Header />
         <div className="Apparea">
           <PredictionBlock owner="Sean" name="Sean's Predictions" predictions={seanData}/>
-          <PredictionBlock owner="Chris" name="Chris' predictions" predictions={chrisData} />
-          <PredictionBlock owner="Justus" name="Justus' predictions" predictions={justusData} />
+          <PredictionBlock owner="Chris" name="Chris' Predictions" predictions={chrisData} />
+          <PredictionBlock owner="Justus" name="Justus' Predictions" predictions={justusData} />
         </div>
       </div>
     );
