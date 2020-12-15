@@ -5,24 +5,29 @@ import './button.css';
 export default function Prediction(props) {
 
   const [isEditing, setEditing] = useState(false);
-  const [newGuess, setnewGuess] = useState('');
+  const [newGuess, setnewGuess] = useState(props.guess);
   
   function handleChange(e) {
     setnewGuess(e.target.value)
+    console.log(e.key, e.charCode);
+    if (e.key === 'Enter' || e.code === 'Enter') {
+      handleSubmit(e);
+    }
   }
 
   function handleSubmit(e) {
     e.preventDefault();
     props.editPrediction(props.id, newGuess);
-    setnewGuess("")
+    setnewGuess(newGuess);
     setEditing(false)
+
   }
 
   const editingTemplate = (
     
     <form className="stack-small" onSubmit={handleSubmit}>
       <div className="form-group">
-        <input
+        <textarea
           id={props.id} 
           className="text form__input--editing" 
           type="text" 
@@ -31,6 +36,8 @@ export default function Prediction(props) {
           required
           autoComplete="off"
           maxLength="120"
+          rows="4"
+          value={newGuess}
         />
       </div>
       <div className="btn-group">

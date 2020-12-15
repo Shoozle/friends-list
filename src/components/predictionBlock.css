@@ -7,7 +7,7 @@
 *, *::after, *::before {
     padding: 0;
     margin: 0;
-    box-sizing: inherit;
+    box-sizing: border-box;
     font-family: 'Quattrocento Sans', sans-serif;
 }
 body {
@@ -25,6 +25,7 @@ body {
     flex-wrap: wrap;
     flex-basis: 50rem;
     flex-direction: row;
+    align-items: flex-start;
 }
 .prediction__block {
     background-color: rgb(66, 65, 65);

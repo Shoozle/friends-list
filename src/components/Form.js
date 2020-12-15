@@ -40,7 +40,7 @@ function Form(props) {
 
     return (
         <form className="form" onSubmit={handleSubmit}>
-        <input
+        <textarea
           className="form__input"
           type="text"
           guess="text"
@@ -49,10 +49,11 @@ function Form(props) {
           onChange={handleChange}
           placeholder="Create a new prediction"
           maxLength="120"
+          rows="4"
         />
-        {/* <button className="btn form__button" type="submit">
+        <button className="btn form__button" type="submit">
           Add
-        </button> */}
+        </button>
       </form>
     );
 }
