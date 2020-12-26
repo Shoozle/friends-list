@@ -2,7 +2,13 @@
     cursor: pointer;
     padding: .3rem .8rem;
     font-size: var(--default-font-size);
-    background-color: lightsteelblue;
+    background-color :lightslategrey;
     border: none;
     margin: 0.3rem;
+    color: white;
+}
+
+.btn:disabled {
+    opacity: 0.5;
+    cursor: default;
 }

@@ -5,11 +5,13 @@ import PredictionBlock from './components/PredictionBlock';
 
 function App(props) {
 
+  const classes = ['Apparea'];
+
   function getData() {
     fetch('https://glacial-castle-18259.herokuapp.com/')
     .then(res => res.json())
     .then(predictions => {
-      predictions.forEach(prediction => {
+        predictions.forEach(prediction => {
         if (prediction.owner === "Chris") {
         setChrisData(chrisData.push(prediction));
         } else
@@ -21,7 +23,7 @@ function App(props) {
         }
       });
     })
-    .catch(err => console.log(err))
+    .catch(err => {})
   }
 
   const [chrisData, setChrisData] = useState([])
@@ -47,7 +49,7 @@ function App(props) {
 
       <div>
         <Header />
-        <div className="Apparea">
+        <div className={classes}>
           <PredictionBlock owner="Sean" name="Sean's Predictions" predictions={seanData}/>
           <PredictionBlock owner="Chris" name="Chris' Predictions" predictions={chrisData} />
           <PredictionBlock owner="Justus" name="Justus' Predictions" predictions={justusData} />

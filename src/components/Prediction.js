@@ -65,15 +65,24 @@ export default function Prediction(props) {
         />
       </div>
       <div >
-        <button type="button" className="btn"  onClick={() => setEditing(true)}>
+        <button type="button" className="btn"  onClick={() => setEditing(true)} disabled={props.commited}>
           Edit 
         </button>
         <button
           className="btn"
           type="button"
           onClick={() => props.deletePrediction(props.id)}
+          disabled={props.commited}
         >
           Delete
+        </button>
+        <button
+          className="btn"
+          type="button"
+          onClick={() => props.commitPrediction(props.id)}
+          disabled={props.commited}
+        >
+          Commit
         </button>
       </div>
     </div>

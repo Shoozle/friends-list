@@ -49,7 +49,8 @@ function PredictionBlock(props) {
     const newprediction = {
       id: id+1,
       guess: guess,
-      outcome: false
+      outcome: false,
+      commited: false,
     };
     //Set the state of predictions to old predictions pushing new prediction at the end
     setPredictions([...predictions, newprediction]);
@@ -97,7 +98,6 @@ function PredictionBlock(props) {
       }
       return prediction;
     });
-
     fetch('https://glacial-castle-18259.herokuapp.com/editguess', {
       method: 'post',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
@@ -111,6 +111,16 @@ function PredictionBlock(props) {
     setPredictions(editedpredictionList);
   }
 
+  function commitPrediction(id) {
+    const commitedPredictionList = predictions.map(prediction => {
+      if (id === prediction.id) {
+        return { ...prediction, commited: true}
+      }
+      return prediction;
+    })
+    setPredictions(commitedPredictionList)
+  }
+
   const predictionList = predictions
     .filter(FILTER_MAP[filter])
     .map(prediction => (
@@ -118,10 +128,12 @@ function PredictionBlock(props) {
         id={prediction.id}
         guess={prediction.guess}
         outcome={prediction.outcome}
+        commited={prediction.commited}
         key={prediction.id}
         togglePredictionOutcome={togglePredictionOutcome}
         deletePrediction={deletePrediction}
         editPrediction={editPrediction}
+        commitPrediction={commitPrediction}
       />
     ));
 
