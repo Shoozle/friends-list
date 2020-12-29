@@ -36,7 +36,7 @@ function PredictionBlock(props) {
   }
   
   function maxId() {
-    fetch('https://glacial-castle-18259.herokuapp.com/returnid')
+    fetch('http://localhost:3000/returnid')
         .then(res => res.json())
         .then(data =>  { 
           setId(data[0].max)
@@ -50,7 +50,7 @@ function PredictionBlock(props) {
       id: id+1,
       guess: guess,
       outcome: false,
-      commited: false,
+      committed: false
     };
     //Set the state of predictions to old predictions pushing new prediction at the end
     setPredictions([...predictions, newprediction]);
@@ -59,7 +59,7 @@ function PredictionBlock(props) {
   function togglePredictionOutcome(id, outcome) {
     const updatedPredictions = predictions.map(prediction => {
       if (id === prediction.id) {
-        fetch('https://glacial-castle-18259.herokuapp.com/editoutcome', {
+        fetch('http://localhost:3000/editoutcome', {
           method: 'post',
           headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
           body: JSON.stringify({
@@ -78,7 +78,7 @@ function PredictionBlock(props) {
 
   function deletePrediction(id) {
     console.log(id);
-    fetch('https://glacial-castle-18259.herokuapp.com/delete', {
+    fetch('http://localhost:3000/delete', {
       method: 'post',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -98,7 +98,7 @@ function PredictionBlock(props) {
       }
       return prediction;
     });
-    fetch('https://glacial-castle-18259.herokuapp.com/editguess', {
+    fetch('http://localhost:3000/editguess', {
       method: 'post',
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify({
@@ -112,13 +112,24 @@ function PredictionBlock(props) {
   }
 
   function commitPrediction(id) {
-    const commitedPredictionList = predictions.map(prediction => {
+    const committedPredictionList = predictions.map(prediction => {
       if (id === prediction.id) {
-        return { ...prediction, commited: true}
+        return { ...prediction, committed: true}
       }
       return prediction;
     })
-    setPredictions(commitedPredictionList)
+    fetch('http://localhost:3000/commit', {
+      method: 'post',
+      headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
+      body: JSON.stringify({
+        id: id,
+        commit: true
+      })
+    })
+    .then()
+    .catch(err => console.log(err))
+    setPredictions(committedPredictionList)
+    console.log(committedPredictionList)
   }
 
   const predictionList = predictions
@@ -128,7 +139,7 @@ function PredictionBlock(props) {
         id={prediction.id}
         guess={prediction.guess}
         outcome={prediction.outcome}
-        commited={prediction.commited}
+        committed={prediction.committed}
         key={prediction.id}
         togglePredictionOutcome={togglePredictionOutcome}
         deletePrediction={deletePrediction}

@@ -1,5 +1,5 @@
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Header from './components/Header';
 import PredictionBlock from './components/PredictionBlock';
 
@@ -8,7 +8,7 @@ function App(props) {
   const classes = ['Apparea'];
 
   function getData() {
-    fetch('https://glacial-castle-18259.herokuapp.com/')
+    fetch('http://localhost:3000')
     .then(res => res.json())
     .then(predictions => {
         predictions.forEach(prediction => {
@@ -29,7 +29,7 @@ function App(props) {
   const [chrisData, setChrisData] = useState([])
   const [seanData, setSeanData] = useState([])
   const [justusData, setJustusData] = useState([])
-  const [userloggedin, setuserloggedin] = useState("Sean");
+  // const [userloggedin, setuserloggedin] = useState("Sean");
   
  
   getData();

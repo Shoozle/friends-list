@@ -20,7 +20,6 @@ export default function Prediction(props) {
     props.editPrediction(props.id, newGuess);
     setnewGuess(newGuess);
     setEditing(false)
-
   }
 
   const editingTemplate = (
@@ -65,14 +64,14 @@ export default function Prediction(props) {
         />
       </div>
       <div >
-        <button type="button" className="btn"  onClick={() => setEditing(true)} disabled={props.commited}>
+        <button type="button" className="btn"  onClick={() => setEditing(true)} disabled={props.committed}>
           Edit 
         </button>
         <button
           className="btn"
           type="button"
           onClick={() => props.deletePrediction(props.id)}
-          disabled={props.commited}
+          disabled={props.committed}
         >
           Delete
         </button>
@@ -80,7 +79,7 @@ export default function Prediction(props) {
           className="btn"
           type="button"
           onClick={() => props.commitPrediction(props.id)}
-          disabled={props.commited}
+          disabled={props.committed}
         >
           Commit
         </button>
