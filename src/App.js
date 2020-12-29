@@ -8,7 +8,7 @@ function App(props) {
   const classes = ['Apparea'];
 
   function getData() {
-    fetch('http://localhost:3000')
+    fetch('https://glacial-castle-18259.herokuapp.com/')
     .then(res => res.json())
     .then(predictions => {
         predictions.forEach(prediction => {
