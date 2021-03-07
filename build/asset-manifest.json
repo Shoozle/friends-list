@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/friends-list/static/css/main.910d7d43.chunk.css",
-    "main.js": "/friends-list/static/js/main.f4e48e83.chunk.js",
-    "main.js.map": "/friends-list/static/js/main.f4e48e83.chunk.js.map",
-    "runtime-main.js": "/friends-list/static/js/runtime-main.01c890b6.js",
-    "runtime-main.js.map": "/friends-list/static/js/runtime-main.01c890b6.js.map",
-    "static/js/2.b8ff9457.chunk.js": "/friends-list/static/js/2.b8ff9457.chunk.js",
-    "static/js/2.b8ff9457.chunk.js.map": "/friends-list/static/js/2.b8ff9457.chunk.js.map",
-    "static/js/3.5dfd48da.chunk.js": "/friends-list/static/js/3.5dfd48da.chunk.js",
-    "static/js/3.5dfd48da.chunk.js.map": "/friends-list/static/js/3.5dfd48da.chunk.js.map",
+    "main.css": "/friends-list/static/css/main.60e11e21.chunk.css",
+    "main.js": "/friends-list/static/js/main.263f32f4.chunk.js",
+    "main.js.map": "/friends-list/static/js/main.263f32f4.chunk.js.map",
+    "runtime-main.js": "/friends-list/static/js/runtime-main.8b8f9535.js",
+    "runtime-main.js.map": "/friends-list/static/js/runtime-main.8b8f9535.js.map",
+    "static/js/2.83266e85.chunk.js": "/friends-list/static/js/2.83266e85.chunk.js",
+    "static/js/2.83266e85.chunk.js.map": "/friends-list/static/js/2.83266e85.chunk.js.map",
+    "static/js/3.12e875e7.chunk.js": "/friends-list/static/js/3.12e875e7.chunk.js",
+    "static/js/3.12e875e7.chunk.js.map": "/friends-list/static/js/3.12e875e7.chunk.js.map",
     "index.html": "/friends-list/index.html",
-    "static/css/main.910d7d43.chunk.css.map": "/friends-list/static/css/main.910d7d43.chunk.css.map",
-    "static/js/2.b8ff9457.chunk.js.LICENSE.txt": "/friends-list/static/js/2.b8ff9457.chunk.js.LICENSE.txt",
+    "static/css/main.60e11e21.chunk.css.map": "/friends-list/static/css/main.60e11e21.chunk.css.map",
+    "static/js/2.83266e85.chunk.js.LICENSE.txt": "/friends-list/static/js/2.83266e85.chunk.js.LICENSE.txt",
     "static/media/header.css": "/friends-list/static/media/header.41b7cf83.jpg",
     "static/media/predictionBlock.css": "/friends-list/static/media/seanlist.604da331.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.01c890b6.js",
-    "static/js/2.b8ff9457.chunk.js",
-    "static/css/main.910d7d43.chunk.css",
-    "static/js/main.f4e48e83.chunk.js"
+    "static/js/runtime-main.8b8f9535.js",
+    "static/js/2.83266e85.chunk.js",
+    "static/css/main.60e11e21.chunk.css",
+    "static/js/main.263f32f4.chunk.js"
   ]
 }

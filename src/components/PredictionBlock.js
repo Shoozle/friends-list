@@ -21,7 +21,7 @@ function PredictionBlock(props) {
   const [filter, setFilter] = useState('All');
   const [id, setId] = useState(0);
   const [predictions, setPredictions] = useState(props.predictions);
-
+  const [loaded, setLoaded] = useState(false);
 
   //STATE IS ASYNCHRONOUS, SO IT WILL NOT ALWAYS BE REFLECTIVE
   function currentid() {
