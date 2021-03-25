@@ -33,6 +33,10 @@
 .spinner:after {
   left: 1.5em;
 }
+.warning {
+  color: white;
+  font-weight: bold;
+}
 @-webkit-keyframes load1 {
   0%,
   80%,
