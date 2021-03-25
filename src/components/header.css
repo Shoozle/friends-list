@@ -3,18 +3,14 @@
 }
 
 .header{
-    height: 20rem;
-    background-image: linear-gradient(
-        to bottom, 
-        rgba(255, 255, 255, .5) 0%, 
-        rgb(22, 22, 22, 0.6) 80%),
-        url('header.jpg');
+    height: 10rem;
     background-size: cover;
     background-position: top;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 5rem;
+    margin-bottom: 2rem;
+    color: white;
 }
 
 .header__textbox{
@@ -25,14 +21,4 @@
     font-family: 'Quattrocento Sans', sans-serif;
     font-weight: 400;
     font-size: 2.2em;
-}
-
-@media only screen and (max-width: 1000px) {
-    .header {
-        background-image: linear-gradient(
-            to bottom, 
-            rgba(255, 255, 255, .5) 0%, 
-            rgb(22, 22, 22, 0.8) 80%),
-            url('header.jpg');
-    }
 }

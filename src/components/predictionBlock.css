@@ -37,15 +37,10 @@ body {
     overflow: hidden;
     flex: 0 1 30%;
     justify-content: flex-start;
-    max-width: 55rem;
+    max-width: 65rem;
 }
 .prediction__heading{
     height: 4rem;
-    background-image: linear-gradient(
-        to bottom, 
-        rgba(100, 100, 100, .8) 0%, 
-        rgb(22, 22, 22, .6) 80%),
-        url('./seanlist.jpg');
     background-size: cover;
     background-position: top;
     position: relative;
